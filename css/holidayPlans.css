@@ -1,0 +1,149 @@
+/* Container */
+.saved-plan-card {
+    background: #ffffff;
+    width: 380px; /* Adjust to fit your grid */
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, sans-serif;
+    border: 1px solid #f1f5f9;
+}
+
+/* Badge: Pinned to top-left with specific rounding */
+.category-badge {
+    background-color: #10b981; /* Emerald Green */
+    color: white;
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 0 0 12px 0; /* Only bottom-right is rounded */
+}
+
+/* Inner Spacing */
+.card-body {
+    padding: 24px;
+}
+
+/* Title */
+.plan-name {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Detail Rows */
+.plan-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #94a3b8; /* Muted slate for icons */
+    font-size: 15px;
+}
+
+.info-item span {
+    color: #64748b; /* Slightly darker for text */
+}
+
+/* Remove Button: Light Pink background with Red text */
+.remove-plan-btn {
+    width: 100%;
+    background-color: #fef2f2; /* Rose 50 */
+    color: #ef4444; /* Red 500 */
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.remove-plan-btn:hover {
+    background-color: #fee2e2;
+    transform: translateY(-1px);
+}
+
+#plans-content {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to move to the next row */
+    justify-content: space-evenly; /* Perfectly spaces them out */
+    gap: 20px; /* Vertical gap between rows */
+    padding: 20px;
+    width: 100%;
+}
+
+.saved-plan-card {
+    /* Each card takes up 45% of the container width */
+    width: 45%; 
+    min-width: 300px; /* Prevents cards from getting too tiny on small screens */
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* Responsive: On mobile, make them take up nearly full width */
+@media (max-width: 700px) {
+    .saved-plan-card {
+        width: 95%;
+    }
+}
+
+/* Container spacing from your previous request */
+#plans-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+}
+
+.saved-plan-card {
+    width: 45%;
+    min-width: 300px;
+}
+
+/* The Sidebar Badge Styling */
+#plans-count {
+    background-color: #ff4757 !important; /* Force red */
+    color: white !important;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    display: flex; /* Changed from none to flex by JS */
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; /* Pushes it to the right of the sidebar text */
+    padding: 2px;
+}
+
+/* Ensure hidden doesn't block the JS */
+#plans-count.hidden {
+    display: none !important;
+}
+
+
+
+
+
