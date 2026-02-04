@@ -1,8 +1,3 @@
-// & GLOBAL
-
-
-
-
 
 // ! SIDEBAR
 function sideBar() {
@@ -234,136 +229,136 @@ startLiveClock();
 
 
 
-// ! ADD HEARTS
-function addHearts() {
-    // & Select HTML elements
-    const myPlansContainer = document.querySelector(`#plans-content`);
-    const emptyState = document.querySelector(`.empty-state`);
-    const badge = document.querySelector(`#plans-count`);
-    const dashboardStat = document.querySelector(`#stat-saved`);
+// // ! ADD HEARTS
+// function addHearts() {
+//     // & Select HTML elements
+//     const myPlansContainer = document.querySelector(`#plans-content`);
+//     const emptyState = document.querySelector(`.empty-state`);
+//     const badge = document.querySelector(`#plans-count`);
+//     const dashboardStat = document.querySelector(`#stat-saved`);
 
-    // 1. Bottom-right Toast Configuration
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'bottom-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true
-    });
+//     // 1. Bottom-right Toast Configuration
+//     const Toast = Swal.mixin({
+//         toast: true,
+//         position: 'bottom-end',
+//         showConfirmButton: false,
+//         timer: 3000,
+//         timerProgressBar: true
+//     });
 
 
-    document.addEventListener('click', function (e) {
-        // Find the button (even if they click the heart icon inside it)
-        const btn = e.target.closest('.holiday-action-btn');
-        if (!btn) return;
+//     document.addEventListener('click', function (e) {
+//         // Find the button (even if they click the heart icon inside it)
+//         const btn = e.target.closest('.holiday-action-btn');
+//         if (!btn) return;
 
-        const parentCard = btn.closest('.holiday-card');
-        const name = parentCard.querySelector('h3').textContent;
-        const day = parentCard.querySelector('.day').textContent;
-        const month = parentCard.querySelector('.month').textContent;
-        const desc = parentCard.querySelector('.holiday-name').textContent;
+//         const parentCard = btn.closest('.holiday-card');
+//         const name = parentCard.querySelector('h3').textContent;
+//         const day = parentCard.querySelector('.day').textContent;
+//         const month = parentCard.querySelector('.month').textContent;
+//         const desc = parentCard.querySelector('.holiday-name').textContent;
 
-        // 2. DUPLICATE CHECK
-        const existingPlans = Array.from(document.querySelectorAll('.plan-name'));
-        const isAlreadyAdded = existingPlans.some(p => p.textContent === name);
+//         // 2. DUPLICATE CHECK
+//         const existingPlans = Array.from(document.querySelectorAll('.plan-name'));
+//         const isAlreadyAdded = existingPlans.some(p => p.textContent === name);
 
-        if (isAlreadyAdded) {
-            Toast.fire({
-                icon: 'info',
-                title: 'Already in your plans!'
-            });
-            return;
-        }
+//         if (isAlreadyAdded) {
+//             Toast.fire({
+//                 icon: 'info',
+//                 title: 'Already in your plans!'
+//             });
+//             return;
+//         }
 
-        // 3. ADDING THE PLAN
-        if (emptyState) emptyState.classList.add('hidden');
+//         // 3. ADDING THE PLAN
+//         if (emptyState) emptyState.classList.add('hidden');
 
-        // Toggle Heart Icon to Solid
-        const heartIcon = btn.querySelector('i');
-        heartIcon.classList.replace('fa-regular', 'fa-solid');
+//         // Toggle Heart Icon to Solid
+//         const heartIcon = btn.querySelector('i');
+//         heartIcon.classList.replace('fa-regular', 'fa-solid');
 
-        const newCard = document.createElement('div');
-        newCard.className = 'saved-plan-card';
-        newCard.innerHTML = `
-            <div class="category-badge">HOLIDAY</div>
-            <div class="card-body">
-                <h3 class="plan-name">${name}</h3>
-                <div class="plan-info">
-                    <div class="info-item"><i class="fa-regular fa-calendar"></i><span>${month} ${day}, 2026</span></div>
-                    <div class="info-item"><i class="fa-solid fa-circle-info"></i><span>${desc}</span></div>
-                </div>
-                <button class="remove-plan-btn"><i class="fa-solid fa-trash"></i> Remove</button>
-            </div>
-        `;
+//         const newCard = document.createElement('div');
+//         newCard.className = 'saved-plan-card';
+//         newCard.innerHTML = `
+//             <div class="category-badge">HOLIDAY</div>
+//             <div class="card-body">
+//                 <h3 class="plan-name">${name}</h3>
+//                 <div class="plan-info">
+//                     <div class="info-item"><i class="fa-regular fa-calendar"></i><span>${month} ${day}, 2026</span></div>
+//                     <div class="info-item"><i class="fa-solid fa-circle-info"></i><span>${desc}</span></div>
+//                 </div>
+//                 <button class="remove-plan-btn"><i class="fa-solid fa-trash"></i> Remove</button>
+//             </div>
+//         `;
 
-        // 4. REMOVAL LOGIC WITH CONFIRMATION
-        newCard.querySelector('.remove-plan-btn').onclick = function () {
-            Swal.fire({
-                title: 'Remove Plan?',
-                text: ` Are you sure you want to remove this plan?`,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#ef4444',
-                cancelButtonColor: '#6b7280',
-                confirmButtonText: 'Yes, remove it!',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    newCard.remove();
-                    // Reset the heart icon on the original card
-                    heartIcon.classList.replace('fa-solid', 'fa-regular');
-                    updateUI();
+//         // 4. REMOVAL LOGIC WITH CONFIRMATION
+//         newCard.querySelector('.remove-plan-btn').onclick = function () {
+//             Swal.fire({
+//                 title: 'Remove Plan?',
+//                 text: ` Are you sure you want to remove this plan?`,
+//                 icon: 'warning',
+//                 showCancelButton: true,
+//                 confirmButtonColor: '#ef4444',
+//                 cancelButtonColor: '#6b7280',
+//                 confirmButtonText: 'Yes, remove it!',
+//                 cancelButtonText: 'Cancel'
+//             }).then((result) => {
+//                 if (result.isConfirmed) {
+//                     newCard.remove();
+//                     // Reset the heart icon on the original card
+//                     heartIcon.classList.replace('fa-solid', 'fa-regular');
+//                     updateUI();
 
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'Plan removed'
-                    });
-                }
-            });
-        };
+//                     Toast.fire({
+//                         icon: 'error',
+//                         title: 'Plan removed'
+//                     });
+//                 }
+//             });
+//         };
 
-        myPlansContainer.appendChild(newCard);
-        updateUI();
+//         myPlansContainer.appendChild(newCard);
+//         updateUI();
 
-        // Success Notification
-        Toast.fire({
-            icon: 'success',
-            title: 'Added to your plans!'
-        });
-    });
+//         // Success Notification
+//         Toast.fire({
+//             icon: 'success',
+//             title: 'Added to your plans!'
+//         });
+//     });
 
-    // 5. UI SYNCING (Badge, Dashboard, Empty State)
-    function updateUI() {
-        const count = document.querySelectorAll('.saved-plan-card').length;
+//     // 5. UI SYNCING (Badge, Dashboard, Empty State)
+//     function updateUI() {
+//         const count = document.querySelectorAll('.saved-plan-card').length;
 
-        // Sidebar Badge
-        if (badge) {
-            badge.textContent = count;
-            if (count > 0) {
-                badge.classList.remove('hidden');
-                badge.style.display = 'flex';
-            } else {
-                badge.classList.add('hidden');
-                badge.style.display = 'none';
-            }
-        }
+//         // Sidebar Badge
+//         if (badge) {
+//             badge.textContent = count;
+//             if (count > 0) {
+//                 badge.classList.remove('hidden');
+//                 badge.style.display = 'flex';
+//             } else {
+//                 badge.classList.add('hidden');
+//                 badge.style.display = 'none';
+//             }
+//         }
 
-        // Dashboard Stat Number
-        if (dashboardStat) {
-            dashboardStat.textContent = count;
-        }
+//         // Dashboard Stat Number
+//         if (dashboardStat) {
+//             dashboardStat.textContent = count;
+//         }
 
-        // Empty State Message
-        if (count === 0 && emptyState) {
-            emptyState.classList.remove('hidden');
-        } else if (emptyState) {
-            emptyState.classList.add('hidden');
-        }
-    }
-}
+//         // Empty State Message
+//         if (count === 0 && emptyState) {
+//             emptyState.classList.remove('hidden');
+//         } else if (emptyState) {
+//             emptyState.classList.add('hidden');
+//         }
+//     }
+// }
 
-// ^ Initialize the function
-addHearts();
+// // ^ Initialize the function
+// addHearts();
 
 
 
